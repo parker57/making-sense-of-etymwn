@@ -81,7 +81,7 @@ $ grep "rel:variant:orthography" no_phrases.tsv | wc -l
 eytmologically_related does not seem like a helpful relationship as the following command bears testament to.
 Such relationships might be helpful if trying to graph the entire English language.
 ```console
-$grep -E "eng: \w+   rel:etymologically_related" etymwn.tsv
+$ grep -E "eng: \w+   rel:etymologically_related" etymwn.tsv
 ...
 eng: Americanization	rel:etymologically_related	eng: American
 eng: Americanization	rel:etymologically_related	eng: Americanize
@@ -98,4 +98,19 @@ eng: France	rel:etymologically_related	eng: Frenchman
 eng: France	rel:etymologically_related	eng: New France
 eng: France	rel:etymologically_related	eng: Tour de France
 eng: France	rel:etymologically_related	eng: francophobe
+```
+
+Further analysis revealed phrases that contain punctuation weren't identified using the previous regex and so survived the culling, but it's all right :^)
+```console
+$ grep "eng: [a-Z'\.-]* " scrubbed.tsv
+...
+eng: iron-sulphur cluster	rel:is_derived_from	eng: sulfur
+eng: it's a jungle out there	rel:is_derived_from	eng: jungle
+eng: it's a matter of time	rel:is_derived_from	eng: time
+eng: it's a question of time	rel:is_derived_from	eng: time
+eng: it's about time	rel:is_derived_from	eng: time
+eng: it's all Greek to me	rel:is_derived_from	eng: Greek
+eng: it's all grist to the mill	rel:is_derived_from	eng: grist
+eng: it's all right	rel:is_derived_from	eng: right
+...
 ```
