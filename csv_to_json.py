@@ -1,11 +1,15 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import csv
 import re
 import codecs
 import json
 
+
 #list(set(words_from('eng'))) unique words in English.
 
-with codecs.open("scrubbed.tsv", 'r', encoding='utf-8',) as scrubbed:
+with codecs.open('scrubbed.tsv', encoding='utf-8',) as scrubbed:
     tsv = csv.reader(scrubbed, delimiter='\t')
     word_rows = list(tsv)
 
@@ -47,12 +51,14 @@ def add_row(row):
     except:
         print('!',row)
 
-for w in words:
-    add_row(w)
+def write(json_file='etymologies.json'):
+    for w in words:
+        add_row(w)
 
-with codecs.open('etymologies.json', 'w', encoding='utf-8') as f:
-    json.dump(roots, f)
+    with codecs.open(json_file, 'w', encoding='utf-8') as f:
+        json.dump(roots, f)
     
 
+write()
 
 
