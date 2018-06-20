@@ -11,6 +11,10 @@ with open("scrubbed.tsv") as scrubbed:
     tsv = csv.reader(scrubbed, delimiter='\t')
     words = list(tsv)
 
+def common_words(f='google-10k.txt'):
+    # Returns most common words in English, reads from text file for google's first 20 hours
+    return [line.rstrip('\n') for line in open(f)]
+
 # Removing orthographic relationships
 words = [w for w in words if w[1][4:] != 'variant:orthography']
 
@@ -70,3 +74,10 @@ def write_new_words(filename = 'new_words.txt'):
         for word in sorted(new_words()):
             f.write('\n'+word)
         f.close()
+
+com = common_words()
+print(len(com))
+new = new_words()
+print(len(new))
+missing = [w for w in com if w in new]
+print(len(missing))
