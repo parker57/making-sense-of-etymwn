@@ -1,5 +1,5 @@
 # etymology-and-derivation-dataset
-Trying to make sense of Gerard de Melo's etymological wordnet
+Trying to make sense of Gerard de Melo's etymological wordnet. The purpose of this repository is to get etymological data for as many words as possible, ideally into a JSON/ dictionary format as is discussed in [this issue.](https://github.com/jmsv/ety-python/issues/24)
 ***
 
 # Obtaining and scrubbing the data
@@ -114,3 +114,7 @@ eng: it's all grist to the mill	rel:is_derived_from	eng: grist
 eng: it's all right	rel:is_derived_from	eng: right
 ...
 ```
+
+After this, one entry specifically (the anglo-saxon word sǣliglic) had to be changed as it contained a newline for seemingly no reason.
+
+To get from the scrubbed .tsv file to the final .json file, the write method in the following [script was called](https://github.com/parker57/making-sense-of-etymwn/blob/master/csv_to_json.py), it is not in the bash script as invocation from the command line is currently causing a UnicodeError, [see issue #1.](https://github.com/parker57/making-sense-of-etymwn/issues/1)
