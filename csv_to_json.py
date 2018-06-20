@@ -6,11 +6,9 @@ import re
 import codecs
 import json
 
-
-#list(set(words_from('eng'))) unique words in English.
-
-with codecs.open('scrubbed.tsv', encoding='utf-8',) as scrubbed:
+with codecs.open('scrubbed.tsv', encoding='utf-8') as scrubbed:
     tsv = csv.reader(scrubbed, delimiter='\t')
+    # [cell.encode('utf-8') for cell in row]
     word_rows = list(tsv)
 
 # Removing orthographic relationships and converting lists to strings
@@ -59,6 +57,5 @@ def write(json_file='etymologies.json'):
         json.dump(roots, f)
     
 
-write()
 
 
